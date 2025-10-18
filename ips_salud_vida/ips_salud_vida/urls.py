@@ -16,9 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.shortcuts import redirect
-from django.urls import path
+from django.urls import path, include
 
 urlpatterns = [
+    path('jet/', include('jet.urls', 'jet')),
+    path(r'jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
     path('admin/', admin.site.urls),
     path('', lambda request: redirect('/admin/')),
+
 ]
