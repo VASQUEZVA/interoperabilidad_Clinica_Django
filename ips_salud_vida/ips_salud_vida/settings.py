@@ -155,29 +155,21 @@ JAZZMIN_SETTINGS = {
 
     "theme": "solar",
     "custom_css": "css/custom_admin.css",
-    # Puedes usar tu propio CSS
 
-    # Links to put along the top menu
+
+
     "topmenu_links": [
 
         # Url that gets reversed (Permissions can be added)
         {"name": "Inicio",  "url": "admin:index", "permissions": ["auth.view_user"]},
 
         # model admin to link to (Permissions checked against model)
-        {"name": "Usuarios","url": "auth.User"},
+        {"name": "Usuarios","url": "auth/user/"},
 
         # App with dropdown menu to all its models pages (Permissions checked against models)
         {"app": "books"},
 
     ],
-
-
-
-
-
-
-
-
 
 }
 

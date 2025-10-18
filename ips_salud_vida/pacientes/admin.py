@@ -1,7 +1,13 @@
 from django.contrib import admin
 from . import models
 
-# Inlines
+# Personalización global del admin
+admin.site.site_header = "Administración Salud y Vida"
+admin.site.site_title = "Panel Salud y Vida"
+admin.site.index_title = "Panel Administrativo - Salud y Vida"
+
+# ----------- Inlines -----------
+
 class PacienteDiscapacidadInline(admin.TabularInline):
     model = models.PacienteDiscapacidad
     extra = 0
@@ -61,19 +67,19 @@ class TipoDocumentoAdmin(admin.ModelAdmin):
 class PaisAdmin(admin.ModelAdmin):
     list_display = ("id_pais", "nombre")
     search_fields = ("nombre",)
-
+    list_per_page = 10
 
 @admin.register(models.CIE10)
 class CIE10Admin(admin.ModelAdmin):
     list_display = ("codigo_CIE10", "descripcion")
     search_fields = ("codigo_CIE10", "descripcion")
-
+    list_per_page = 10
 
 @admin.register(models.EnfermedadHuerfana)
 class EnfermedadHuerfanaAdmin(admin.ModelAdmin):
     list_display = ("codigo_enfermedades_huerfanas", "descripcion")
     search_fields = ("descripcion",)
-
+    list_per_page = 10
 
 @admin.register(models.CausaMotivoAtencion)
 class CausaMotivoAdmin(admin.ModelAdmin):
