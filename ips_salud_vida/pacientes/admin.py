@@ -1,13 +1,7 @@
 from django.contrib import admin
 from . import models
 
-# Personalización global del admin
-admin.site.site_header = "Administración Salud y Vida"
-admin.site.site_title = "Panel Salud y Vida"
-admin.site.index_title = "Panel Administrativo - Salud y Vida"
-
-# ----------- Inlines -----------
-
+# Inlines
 class PacienteDiscapacidadInline(admin.TabularInline):
     model = models.PacienteDiscapacidad
     extra = 0
