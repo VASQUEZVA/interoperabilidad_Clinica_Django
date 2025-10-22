@@ -128,7 +128,7 @@ class EntidadSalud(models.Model):
 
 class TipoDocumento(models.Model):
     tipo_documento = models.CharField(max_length=2, primary_key=True)
-    descripcion = models.CharField(max_length=30)
+    descripcion = models.CharField(max_length=60)
 
     class Meta:
         verbose_name = "Tipo de documento"
@@ -143,6 +143,7 @@ class TipoDocumento(models.Model):
 class Pais(models.Model):
     id_pais = models.CharField(max_length=3, primary_key=True, null=False)
     nombre = models.CharField(max_length=200)
+    codigo_alfa_3 =models.CharField(max_length=3)
 
     class Meta:
         verbose_name = "País"
