@@ -53,8 +53,8 @@ class TipoDocumentoAdmin(admin.ModelAdmin):
 
 @admin.register(models.Pais)
 class PaisAdmin(admin.ModelAdmin):
-    list_display = ("id_pais", "nombre")
-    search_fields = ("nombre",)
+    list_display = ("id_pais", "nombre","codigo_alfa_3")
+    search_fields = ("id_pais","nombre", "codigo_alfa_3")
     list_per_page = 10
 
 @admin.register(models.CIE10)
