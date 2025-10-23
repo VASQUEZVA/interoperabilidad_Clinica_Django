@@ -1,12 +1,9 @@
 from django.contrib import admin
 from . import models
 
-# Personalización global del admin
 admin.site.site_header = "Administración Salud y Vida"
 admin.site.site_title = "Panel Salud y Vida"
 admin.site.index_title = "Panel Administrativo - Salud y Vida"
-
-# ----------- Inlines -----------
 
 class PacienteDiscapacidadInline(admin.TabularInline):
     model = models.PacienteDiscapacidad
@@ -23,32 +20,25 @@ class DiagnosticoInline(admin.TabularInline):
     extra = 0
     raw_id_fields = ("codigo_cie10", "codigo_enfermedad_huerfana")
 
-
-# Registro de modelos EXCEPTUANDO paciente y contacto Servicios de salud
-
 @admin.register(models.Ocupacion)
 class OcupacionAdmin(admin.ModelAdmin):
     list_display = ("codigo_ocupacion", "nombre")
     search_fields = ("codigo_ocupacion", "nombre")
-
 
 @admin.register(models.Etnia)
 class EtniaAdmin(admin.ModelAdmin):
     list_display = ("id_etnia", "descripcion")
     search_fields = ("descripcion",)
 
-
 @admin.register(models.Comunidad)
 class ComunidadAdmin(admin.ModelAdmin):
     list_display = ("id_comunidad", "descripcion")
     search_fields = ("descripcion",)
 
-
 @admin.register(models.MunicipioResidenciaHabitual)
 class MunicipioAdmin(admin.ModelAdmin):
     list_display = ("codigo_municipio_RH", "nombre")
     search_fields = ("nombre",)
-
 
 @admin.register(models.EntidadSalud)
 class EntidadSaludAdmin(admin.ModelAdmin):
@@ -56,12 +46,10 @@ class EntidadSaludAdmin(admin.ModelAdmin):
     search_fields = ("codigo_entidad_salud", "nombre")
     list_filter = ("eps", "ips")
 
-
 @admin.register(models.TipoDocumento)
 class TipoDocumentoAdmin(admin.ModelAdmin):
     list_display = ("tipo_documento", "descripcion")
     search_fields = ("descripcion",)
-
 
 @admin.register(models.Pais)
 class PaisAdmin(admin.ModelAdmin):
@@ -98,13 +86,11 @@ class ViaIngresoAdmin(admin.ModelAdmin):
     list_display = ("codigo_via_ingreso", "descripcion")
     search_fields = ("descripcion",)
 
-
 @admin.register(models.CategoriaDiscapacidad)
 class CategoriaDiscapacidadAdmin(admin.ModelAdmin):
     list_display = ("codigo_discapacidad", "descripcion")
     search_fields = ("descripcion",)
     inlines = [PacienteDiscapacidadInline]
-
 
 @admin.register(models.PacienteDiscapacidad)
 class PacienteDiscapacidadAdmin(admin.ModelAdmin):
@@ -112,13 +98,11 @@ class PacienteDiscapacidadAdmin(admin.ModelAdmin):
     search_fields = ("paciente_uuid__documento", "codigo_discapacidad__descripcion")
     raw_id_fields = ("paciente_uuid", "codigo_discapacidad")
 
-
 @admin.register(models.PacienteNacionalidad)
 class PacienteNacionalidadAdmin(admin.ModelAdmin):
     list_display = ("paciente_uuid", "id_pais")
     search_fields = ("paciente_uuid__documento", "id_pais__nombre")
     raw_id_fields = ("paciente_uuid", "id_pais")
-
 
 @admin.register(models.DocumentoVoluntadAnticipada)
 class DocumentoVoluntadAnticipadaAdmin(admin.ModelAdmin):
@@ -131,13 +115,11 @@ class DocumentoVoluntadAnticipadaAdmin(admin.ModelAdmin):
         ("Decisión", {"fields": ("voluntad", "fecha", "codigo_entidad")}),
     )
 
-
 @admin.register(models.OposicionPresuncionDonacion)
 class OposicionPresuncionDonacionAdmin(admin.ModelAdmin):
     list_display = ("paciente_uuid", "manifestacion", "fecha")
     search_fields = ("paciente_uuid__documento",)
     raw_id_fields = ("paciente_uuid",)
-
 
 @admin.register(models.Diagnostico)
 class DiagnosticoAdmin(admin.ModelAdmin):
