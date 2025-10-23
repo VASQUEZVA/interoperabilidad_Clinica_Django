@@ -62,7 +62,7 @@ ROOT_URLCONF = 'ips_salud_vida.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -135,13 +135,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -153,29 +154,9 @@ JET_APP_INDEX_DASHBOARD = 'jet.dashboard.dashboard.DefaultAppIndexDashboard'
 
 JET_THEMES = [
     {
-        'theme': 'default', # theme folder name
-        'color': '#47bac1', # color of the theme's button in user menu
-        'title': 'Default' # theme title
-    },
-    {
         'theme': 'green',
         'color': '#44b78b',
         'title': 'Green'
-    },
-    {
-        'theme': 'light-green',
-        'color': '#2faa60',
-        'title': 'Light Green'
-    },
-    {
-        'theme': 'light-violet',
-        'color': '#a464c4',
-        'title': 'Light Violet'
-    },
-    {
-        'theme': 'light-blue',
-        'color': '#5EADDE',
-        'title': 'Light Blue'
     },
     {
         'theme': 'light-gray',
@@ -184,36 +165,6 @@ JET_THEMES = [
     }
 ]
 
+JET_DEFAULT_THEME = 'green'
 
-
-"""JAZZMIN_SETTINGS = {
-    "site_title": " Salud Vida",
-    "site_header": "Clínica Salud Vida",
-    "site_brand": "IPS Salud Vida",
-    "welcome_sign": "Bienvenido al sistema de gestión clínica",
-    "site_logo": "img/Login.png",
-    "copyright": "© 2025 IPS Salud Vida",
-    "login_logo": "img/Login.png",
-    "show_ui_builder": True,
-
-    "theme": "solar",
-    "custom_css": "css/custom_admin.css",
-
-
-
-    "topmenu_links": [
-
-        # Url that gets reversed (Permissions can be added)
-        {"name": "Inicio",  "url": "admin:index", "permissions": ["auth.view_user"]},
-
-        # model admin to link to (Permissions checked against model)
-        {"name": "Usuarios","url": "auth/user/"},
-
-        # App with dropdown menu to all its models pages (Permissions checked against models)
-        {"app": "books"},
-
-    ],
-
-} """
-
-
+JET_SIDE_MENU_CUSTOM_APPS = []
