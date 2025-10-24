@@ -1,13 +1,32 @@
+"""
+Este módulo define los modelos principales del sistema de salud en Django.
+
+Incluye:
+- Listas de opciones (choices) para campos con valores predefinidos.
+- Modelos base o de referencia (como ocupaciones, etnias, comunidades, países, etc.).
+- Modelos centrales (como Paciente y sus relaciones).
+- Modelos de atención y diagnóstico en el sistema de salud.
+
+Cada modelo cuenta con su tabla asociada, nombre legible para el panel de administración,
+y relaciones configuradas mediante llaves foráneas (ForeignKey y OneToOneField).
+"""
+
 import uuid
 from django.db import models
 
+# ---------------------------------------------------------------------
 # CAMPOS CON CHOICES
+# ---------------------------------------------------------------------
+# Cada lista contiene tuplas con un código (string) y su descripción legible.
+# Estas se usan en los modelos para crear menús desplegables o limitar valores posibles.
+# ---------------------------------------------------------------------
 
 SEXO_CHOICES = [
     ("01", "Hombre"),
     ("02", "Mujer"),
     ("03", "Indeterminado / Intersexual"),
 ]
+"""Lista de opciones para el campo 'sexo'."""
 
 IDENTIDAD_GENERO_CHOICES = [
     ("01", "Masculino"),
@@ -16,12 +35,13 @@ IDENTIDAD_GENERO_CHOICES = [
     ("04", "Neutro"),
     ("05", "No lo declara"),
 ]
+"""Lista de opciones para el campo 'identidad de género'."""
 
 ZONA_TERRITORIAL_CHOICES = [
     ("01", "Urbana"),
     ("02", "Rural"),
 ]
-
+"""Lista de opciones para el campo 'zona territorial'."""
 
 ENTORNO_ATENCION_CHOICES = [
     ("01", "Hogar"),
@@ -30,6 +50,7 @@ ENTORNO_ATENCION_CHOICES = [
     ("04", "Laboral"),
     ("05", "Institucional"),
 ]
+"""Lista de opciones para el campo 'entorno de atención'."""
 
 GRUPO_SERVICIOS_CHOICES = [
     ("01", "Consulta externa"),
@@ -38,6 +59,7 @@ GRUPO_SERVICIOS_CHOICES = [
     ("04", "Quirúrgico"),
     ("05", "Atención inmediata"),
 ]
+"""Lista de opciones para el campo 'grupo de servicios'."""
 
 TRIAGE_CHOICES = [
     ("01", "Triage I"),
@@ -46,17 +68,25 @@ TRIAGE_CHOICES = [
     ("04", "Triage IV"),
     ("05", "Triage V"),
 ]
+"""Lista de opciones para el campo 'triage'."""
 
 TIPO_DIAGNOSTICO_CHOICES = [
     ("01", "Impresión diagnóstica"),
     ("02", "Confirmado nuevo"),
     ("03", "Confirmado repetido"),
 ]
+"""Lista de opciones para el campo 'tipo de diagnóstico'."""
 
 
+# ---------------------------------------------------------------------
 # MODELOS ENTIDADES BÁSICAS
+# ---------------------------------------------------------------------
+# Estos modelos representan información general y estable dentro del sistema,
+# como las ocupaciones, etnias, comunidades, municipios, entidades de salud, etc.
+# ---------------------------------------------------------------------
 
 class Ocupacion(models.Model):
+    """Modelo que representa una ocupación o profesión."""
     codigo_ocupacion = models.CharField(max_length=4, primary_key=True, null=False)
     nombre = models.CharField(max_length=200)
 
@@ -71,6 +101,7 @@ class Ocupacion(models.Model):
 
 
 class Etnia(models.Model):
+    """Modelo que representa un grupo étnico."""
     id_etnia = models.CharField(max_length=2, primary_key=True, null=False)
     descripcion = models.CharField(max_length=200)
 
@@ -85,6 +116,7 @@ class Etnia(models.Model):
 
 
 class Comunidad(models.Model):
+    """Modelo que representa una comunidad específica."""
     id_comunidad = models.CharField(max_length=3, primary_key=True, null=False)
     descripcion = models.CharField(max_length=200)
 
@@ -98,6 +130,7 @@ class Comunidad(models.Model):
         return self.descripcion
 
 class MunicipioResidenciaHabitual(models.Model):
+    """Modelo que almacena los municipios de residencia habitual."""
     codigo_municipio_RH = models.CharField(max_length=5, primary_key=True, null=False)
     nombre = models.CharField(max_length=200)
 
@@ -111,6 +144,7 @@ class MunicipioResidenciaHabitual(models.Model):
         return self.nombre
 
 class EntidadSalud(models.Model):
+    """Modelo que representa una entidad de salud (EPS o IPS)."""
     codigo_entidad_salud = models.CharField(max_length=12, primary_key=True, null=False)
     nombre = models.CharField(max_length=200)
     eps = models.BooleanField(default=False)
@@ -127,6 +161,7 @@ class EntidadSalud(models.Model):
 
 
 class TipoDocumento(models.Model):
+    """Modelo que define los tipos de documento de identidad."""
     tipo_documento = models.CharField(max_length=2, primary_key=True)
     descripcion = models.CharField(max_length=60)
 
@@ -141,6 +176,7 @@ class TipoDocumento(models.Model):
 
 
 class Pais(models.Model):
+    """Modelo que representa los países registrados en el sistema."""
     id_pais = models.CharField(max_length=3, primary_key=True, null=False)
     nombre = models.CharField(max_length=200)
     codigo_alfa_3 =models.CharField(max_length=3)
@@ -156,6 +192,7 @@ class Pais(models.Model):
 
 
 class CIE10(models.Model):
+    """Modelo que representa los códigos de diagnóstico según la clasificación CIE-10."""
     codigo_CIE10 = models.CharField(max_length=4, primary_key=True, null=False)
     descripcion = models.CharField(max_length=255)
 
@@ -170,6 +207,7 @@ class CIE10(models.Model):
 
 
 class EnfermedadHuerfana(models.Model):
+    """Modelo que almacena enfermedades huérfanas reconocidas oficialmente."""
     codigo_enfermedades_huerfanas = models.CharField(max_length=4, primary_key=True, null=False)
     descripcion = models.CharField(max_length=200)
 
@@ -184,6 +222,7 @@ class EnfermedadHuerfana(models.Model):
 
 
 class CausaMotivoAtencion(models.Model):
+    """Modelo que representa las causas o motivos de atención médica."""
     codigo_causa_atencion = models.CharField(max_length=2, primary_key=True)
     descripcion = models.CharField(max_length=200)
 
@@ -198,6 +237,7 @@ class CausaMotivoAtencion(models.Model):
 
 
 class ModalidadServicio(models.Model):
+    """Modelo que representa la modalidad de servicio prestado."""
     codigo_modalidad_servicio = models.CharField(max_length=4, primary_key=True)
     descripcion = models.CharField(max_length=200)
 
@@ -212,6 +252,7 @@ class ModalidadServicio(models.Model):
 
 
 class ViaIngresoUsuario(models.Model):
+    """Modelo que almacena las posibles vías de ingreso al sistema de salud."""
     codigo_via_ingreso = models.CharField(max_length=4, primary_key=True, null=False)
     descripcion = models.CharField(max_length=200)
 
@@ -224,11 +265,15 @@ class ViaIngresoUsuario(models.Model):
     def __str__(self):
         return self.descripcion
 
-
+# ---------------------------------------------------------------------
 # ENTIDAD CENTRAL: PACIENTE
-
+# ---------------------------------------------------------------------
 
 class Paciente(models.Model):
+    """
+    Modelo principal que representa la información de un paciente.
+    Incluye datos personales, demográficos y relaciones con entidades externas.
+    """
     paciente_uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     tipo_documento = models.ForeignKey(TipoDocumento, on_delete=models.PROTECT)
     documento = models.CharField(max_length=20, unique=True, null=False)
@@ -258,10 +303,12 @@ class Paciente(models.Model):
     def __str__(self):
         return f"{self.primero_apellido} {self.segundo_apellido or ''}, {self.primero_nombre} ({self.documento})"
 
-
+# ---------------------------------------------------------------------
 # RELACIONES PACIENTE
+# ---------------------------------------------------------------------
 
 class CategoriaDiscapacidad(models.Model):
+    """Modelo que representa las categorías de discapacidad registradas."""
     codigo_discapacidad = models.CharField(max_length=2, primary_key=True, null=False)
     descripcion = models.CharField(max_length=200)
 
@@ -276,6 +323,10 @@ class CategoriaDiscapacidad(models.Model):
 
 
 class PacienteDiscapacidad(models.Model):
+    """
+    Modelo intermedio que asocia pacientes con una o varias discapacidades.
+    Representa una relación muchos a muchos entre Paciente y CategoríaDiscapacidad.
+    """
     paciente_uuid = models.ForeignKey(Paciente, on_delete=models.CASCADE)
     codigo_discapacidad = models.ForeignKey(CategoriaDiscapacidad, on_delete=models.PROTECT)
 
@@ -291,6 +342,10 @@ class PacienteDiscapacidad(models.Model):
 # TABLA INTERMEDIA PARA RELACIÓN MUCHOS A MUCHOS
 
 class PacienteNacionalidad(models.Model):
+    """
+    Tabla intermedia que relaciona pacientes con los países de nacionalidad.
+    Permite asignar más de una nacionalidad a un paciente.
+    """
     paciente_uuid = models.ForeignKey(Paciente, on_delete=models.CASCADE)
     id_pais = models.ForeignKey(Pais, on_delete=models.PROTECT)
 
@@ -305,6 +360,10 @@ class PacienteNacionalidad(models.Model):
 
 
 class DocumentoVoluntadAnticipada(models.Model):
+    """
+    Modelo que almacena la voluntad anticipada del paciente
+    frente a decisiones médicas futuras.
+    """
     paciente_uuid = models.OneToOneField(Paciente, on_delete=models.CASCADE, primary_key=True)
     voluntad = models.CharField(max_length=2)
     fecha = models.DateTimeField(null=False)
@@ -321,6 +380,10 @@ class DocumentoVoluntadAnticipada(models.Model):
 
 
 class OposicionPresuncionDonacion(models.Model):
+    """
+    Modelo que registra la manifestación del paciente
+    frente a la donación de órganos y tejidos.
+    """
     paciente_uuid = models.OneToOneField(Paciente, on_delete=models.CASCADE, primary_key=True, null=False )
     manifestacion = models.CharField(max_length=2, null=True)
     fecha = models.DateTimeField(null=False)
@@ -334,11 +397,16 @@ class OposicionPresuncionDonacion(models.Model):
     def __str__(self):
         return f"Oposición {self.manifestacion} - {self.paciente_uuid}"
 
-
+# ---------------------------------------------------------------------
 # CONTACTO SERVICIO DE SALUD
-
+# ---------------------------------------------------------------------
 
 class ContactoServicioSalud(models.Model):
+    """
+    Modelo que representa un contacto o atención del paciente
+    con el servicio de salud. Registra información del entorno,
+    causa de atención y entidad prestadora.
+    """
     id_atencion_uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     fecha_atencion = models.DateTimeField(null=False)
     grupo_servicios = models.CharField(max_length=2, choices=GRUPO_SERVICIOS_CHOICES)
@@ -363,6 +431,10 @@ class ContactoServicioSalud(models.Model):
 
 
 class Diagnostico(models.Model):
+    """
+    Modelo que almacena los diagnósticos realizados durante una atención médica.
+    Puede estar asociado a una enfermedad común o a una enfermedad huérfana.
+    """
     id_diagnostico = models.AutoField(primary_key=True)
     tipo_diagnostico = models.CharField(max_length=2, choices=TIPO_DIAGNOSTICO_CHOICES)
     id_atencion_uuid = models.ForeignKey(ContactoServicioSalud, on_delete=models.CASCADE, related_name="diagnosticos")
