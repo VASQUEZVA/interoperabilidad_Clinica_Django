@@ -23,12 +23,12 @@ Su propósito es garantizar la interoperabilidad, integridad y trazabilidad de l
     DB_PASSWORD= Tu contraseña
     DB_HOST=localhost
     DB_PORT=3306
+### Aplicar migraciones de la base de datos:
 
-### Para crear migraciones basadas en los cambios realizados en los modelos, utilice el siguiente comando:
     python manage.py makemigrations
+    python manage.py migrat
 
-### Para aplicar migraciones a la base de datos, utilice el siguiente comando:
-    python manage.py migrate
+
 ### Para crear un superusuario para acceder al panel de administración, utilice el siguiente comando:
     python manage.py createsuperuser
 
