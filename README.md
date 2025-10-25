@@ -26,7 +26,7 @@ Su propósito es garantizar la interoperabilidad, integridad y trazabilidad de l
 ### Aplicar migraciones de la base de datos:
 
     python manage.py makemigrations
-    python manage.py migrat
+    python manage.py migrate
 
 
 ### Para crear un superusuario para acceder al panel de administración, utilice el siguiente comando:
