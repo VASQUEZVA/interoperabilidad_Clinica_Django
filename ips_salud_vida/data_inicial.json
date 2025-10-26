@@ -3122,6 +3122,55 @@
   }
 },
 {
+  "model": "pacientes.etnia",
+  "pk": "01",
+  "fields": {
+    "descripcion": "Indigena"
+  }
+},
+{
+  "model": "pacientes.etnia",
+  "pk": "02",
+  "fields": {
+    "descripcion": "ROM (Gitanos)"
+  }
+},
+{
+  "model": "pacientes.etnia",
+  "pk": "03",
+  "fields": {
+    "descripcion": "Raizal (San Andres y Providencia"
+  }
+},
+{
+  "model": "pacientes.etnia",
+  "pk": "04",
+  "fields": {
+    "descripcion": "Palenquero (San Basilio de Palenque)"
+  }
+},
+{
+  "model": "pacientes.etnia",
+  "pk": "05",
+  "fields": {
+    "descripcion": "Negro (a)"
+  }
+},
+{
+  "model": "pacientes.etnia",
+  "pk": "06",
+  "fields": {
+    "descripcion": "Afrocolombiano (a)"
+  }
+},
+{
+  "model": "pacientes.etnia",
+  "pk": "99",
+  "fields": {
+    "descripcion": "Ninguna de las Anteriores"
+  }
+},
+{
   "model": "pacientes.municipioresidenciahabitual",
   "pk": "11001",
   "fields": {
