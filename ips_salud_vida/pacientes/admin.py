@@ -49,6 +49,7 @@ class OcupacionAdmin(admin.ModelAdmin):
     """Administra las ocupaciones registradas en el sistema."""
     list_display = ("codigo_ocupacion", "nombre")
     search_fields = ("codigo_ocupacion", "nombre")
+    list_per_page = 12
 
 @admin.register(models.Etnia)
 class EtniaAdmin(admin.ModelAdmin):

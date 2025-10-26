@@ -32,6 +32,31 @@ Su propósito es garantizar la interoperabilidad, integridad y trazabilidad de l
 ### Para crear un superusuario para acceder al panel de administración, utilice el siguiente comando:
     python manage.py createsuperuser
 
+# Cargar Datos de Maestros a la Base de Datos
+### Para cargar datos iniciales en la base de datos, utilice el siguiente comando:
+    # moverse a la carpeta del proyecto (app)
+
+    cd .\ips_salud_vida\
+    
+    python manage.py loaddata data_inicial.json
+
+Este comando cargará los datos desde el archivo `data_inicial.json` ubicado en el directorio raíz del proyecto a la base de datos configurada.
+
+El archivo `data_inicial.json` contiene datos maestros para las siguientes tablas:
+
+1. Pais
+2. Municipio_Residencia_Habitual
+3. Ocupacion
+4. Etnia
+5. Comunidad
+6. Causa_Motivo_Atencion
+7. Categoria_Discapacidad
+8. Tipo_Documento
+9. Via_ingreso_Usuario
+10. Modalidad_Servicio
+11. Clasificacion_CIE-10
+12. Entidad_Salud
+
 ### Para ejecutar el servidor de desarrollo, utilice el siguiente comando:
     python manage.py runserver
 
