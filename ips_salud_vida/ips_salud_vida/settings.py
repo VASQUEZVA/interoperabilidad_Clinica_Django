@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+from django.utils.translation import gettext_lazy as _
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -168,3 +169,35 @@ JET_THEMES = [
 JET_DEFAULT_THEME = 'green'
 
 JET_SIDE_MENU_CUSTOM_APPS = []
+
+JET_SIDE_MENU_ITEMS  =  [
+        { 'label' :  _ ( 'Tablas' ),  'app_label' :  'core' ,  'items' :  [
+        { 'name' : 'pacientes.pais', 'label' : _('Paises') },
+        { 'name' : 'pacientes.municipioresidenciahabitual', 'label' : _('Municipios de Residencia') },
+        { 'name' : 'pacientes.categoriadiscapacidad', 'label' : _('Categoria Discapacidad') },
+        { 'name' : 'pacientes.causamotivoatencion', 'label' : _('Motivos de Atencion') },
+        { 'name' : 'pacientes.cie10', 'label' : _('Clasificicacion CIE-10') },
+        { 'name' : 'pacientes.comunidad', 'label' : _('Comunidades') },
+        { 'name' : 'pacientes.entidadsalud', 'label' : _('Entidad Salud') },
+        { 'name' : 'pacientes.enfermedadhuerfana', 'label' : _('Enfermedades Huerfanas') },
+        { 'name' : 'pacientes.diagnostico', 'label' : _('Diagnostico') },
+        { 'name' : 'pacientes.etnia', 'label' : _('Etnias') },
+        { 'name' : 'pacientes.documentovoluntadanticipada', 'label' : _('Documento Voluntad Anticipada') },
+        { 'name' : 'pacientes.modalidadservicio', 'label' : _('Modalidad de Servicio') },
+        { 'name' : 'pacientes.ocupacion', 'label' : _('Ocupaciones') },
+        { 'name' : 'pacientes.oposicionpresunciondonacion', 'label' : _('Oposicion Presuncion de Donacion') },
+        { 'name' : 'pacientes.pacientediscapacidad', 'label' : _('Pacientes - Discapacidades') },
+        { 'name' : 'pacientes.pacientenacionalidad', 'label' : _('Pacientes - Nacionalidades') },
+        { 'name' : 'pacientes.tipodocumento', 'label' : _('Tipo de Documento') },
+        { 'name' : 'pacientes.viaingresousuario', 'label' : _('Via Ingreso Usuario') },
+
+    ]},
+    { 'label' :  _ ( 'Usuarios' ),  'items' :  [
+        { 'name' :  'core.user' },
+        { 'name' : 'auth.user' },
+        { 'name' :  'auth.group' },
+        { 'name' :  'core.userprofile' ,  'permisos' :  [ 'core.user' ]},
+    ]},
+
+
+]
