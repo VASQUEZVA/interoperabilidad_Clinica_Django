@@ -75,6 +75,7 @@ class EntidadSaludAdmin(admin.ModelAdmin):
     list_display = ("codigo_entidad_salud", "nombre", "eps", "ips")
     search_fields = ("codigo_entidad_salud", "nombre")
     list_filter = ("eps", "ips")
+    list_per_page = 12
 
 @admin.register(models.TipoDocumento)
 class TipoDocumentoAdmin(admin.ModelAdmin):
