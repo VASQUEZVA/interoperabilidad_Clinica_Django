@@ -101,14 +101,14 @@ class CIE10Admin(admin.ModelAdmin):
 class EnfermedadHuerfanaAdmin(admin.ModelAdmin):
     """Administra las enfermedades huérfanas registradas."""
     list_display = ("codigo_enfermedades_huerfanas", "descripcion")
-    search_fields = ("descripcion",)
+    search_fields = ("descripcion","codigo_enfermedades_huerfanas")
     list_per_page = 10
 
 @admin.register(models.CausaMotivoAtencion)
 class CausaMotivoAdmin(admin.ModelAdmin):
     """Administra las causas o motivos de atención médica."""
     list_display = ("codigo_causa_atencion", "descripcion")
-    search_fields = ("descripcion",)
+    search_fields = ("descripcion", "codigo_causa_atencion")
 
 
 @admin.register(models.ModalidadServicio)
