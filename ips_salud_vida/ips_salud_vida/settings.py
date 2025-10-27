@@ -177,7 +177,6 @@ JET_SIDE_MENU_ITEMS  =  [
         { 'name' : 'pacientes.categoriadiscapacidad', 'label' : _('Categoria Discapacidad') },
         { 'name' : 'pacientes.causamotivoatencion', 'label' : _('Motivos de Atencion') },
         { 'name' : 'pacientes.cie10', 'label' : _('Clasificicacion CIE-10') },
-        { 'name' : 'pacientes.comunidad', 'label' : _('Comunidades') },
         { 'name' : 'pacientes.entidadsalud', 'label' : _('Entidad Salud') },
         { 'name' : 'pacientes.enfermedadhuerfana', 'label' : _('Enfermedades Huerfanas') },
         { 'name' : 'pacientes.diagnostico', 'label' : _('Diagnostico') },
@@ -188,6 +187,7 @@ JET_SIDE_MENU_ITEMS  =  [
         { 'name' : 'pacientes.oposicionpresunciondonacion', 'label' : _('Oposicion Presuncion de Donacion') },
         { 'name' : 'pacientes.pacientediscapacidad', 'label' : _('Pacientes - Discapacidades') },
         { 'name' : 'pacientes.pacientenacionalidad', 'label' : _('Pacientes - Nacionalidades') },
+        { 'name' : 'pacientes.comunidad', 'label' : _('Comunidades') },
         { 'name' : 'pacientes.tipodocumento', 'label' : _('Tipo de Documento') },
         { 'name' : 'pacientes.viaingresousuario', 'label' : _('Via Ingreso Usuario') },
 
