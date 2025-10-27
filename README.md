@@ -1,4 +1,12 @@
 # Python Django
+
+## Equipo de Desarrollo:
+- Andrés Felipe Torres Araujo
+- Juan Pablo Jiménez Saldarriaga
+- Victor Alfonso Vásquez Alvarez
+- Veronica Ortíz Franco
+- Makey de Jesús Parra Osorio
+
 ## Proyecto Clínica Salud Vida — Sistema de Gestión Clínica
 Este proyecto desarrolla un Sistema de Información para la IPS “Salud y Vida”, implementado en Django, orientado a la gestión interoperable de la historia clínica electrónica de los pacientes, conforme a la Resolución 866 de 2021 del Ministerio de Salud de Colombia.
 Su propósito es garantizar la interoperabilidad, integridad y trazabilidad de los datos clínicos, siguiendo buenas prácticas de desarrollo de software y principios de Programación Orientada a Objetos (POO).
@@ -34,7 +42,7 @@ Su propósito es garantizar la interoperabilidad, integridad y trazabilidad de l
 
 # Cargar Datos de Maestros a la Base de Datos
 ### Para cargar datos iniciales en la base de datos, utilice el siguiente comando:
-    # moverse a la carpeta del proyecto (app)
+    # asegurarse de estar en la carpeta del proyecto (app)
 
     cd .\ips_salud_vida\
     
